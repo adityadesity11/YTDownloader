@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <script src="{{url_for('static',filename='script.js')}}"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">YT Downloader</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" id='nav-link' aria-current="page" href="/">Home</a>
+                    <a class="nav-link" id='nav-link' href="{{url_for('mp4')}}">YT to MP4</a>
+                    <a class="nav-link" id='nav-link' href="{{url_for('mp3')}}">YT to MP3</a>
+                    <a class="nav-link" id='nav-link' href="{{url_for('audio')}}">YT to Audio</a>
+                    <a class="nav-link" id='nav-link' href="{{url_for('playlist')}}">Playlist Download</a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar ends -->
+    {% with messages = get_flashed_messages(with_categories = true)%}
+    {% if messages %}
+    {% for category,message in messages %}
+    {% if category == 'error'%}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert" id="errorAlert">
+        <p>{{ message }}</p>
+        <button type="button" class="btn-close" aria-label="Close" onclick="closeAlert1()"></button>
+    </div>
+
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert" id="successAlert">
+        <p>{{ message }}</p>
+        <button type="button" class="btn-close" aria-label="Close" onclick="closeAlert2()"></button>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% if request.method =='POST'%}
+    <div class="container mt-4">
+        <center>
+            <div class="card" style="width: 18rem;">
+                <img src={{thumbnail_url}} class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{title}}</h5>
+                    <p class="card-text">Downloaded!</p>
+                </div>
+            </div>
+        </center>
+    </div>
+    {% endif %}
+
+    {% block content %}{% endblock content %}
+
+
+    {% block body %}{% endblock body %}
+
+    <div class="container">
+        <div class="container p-3">
+            YT Downloader is a Youtube downloader, allowing you to download high quality Youtube videos: 1080p, 2k, 4k.
+            Save
+            and download any Youtube video in .mp3, .mp4 format quickly with the highest quality.
+
+            Support downloading any Youtube video on any device: PC, tablet, phone (iPhone, Android). Download Youtube
+            videos online on a web browser, no need to install software.<br>
+            <hr>
+            <h3>Key Features</h3><br>
+            <ul>
+
+                <li>Easy and Fast: using our Youtube downloader is the best way to download any Youtube video in highest
+                    quality in few easy steps.</li>
+                <li>
+                    Download high quality Youtube videos: supports downloading videos from Youtube to your device with
+                    the
+                    highest
+                    quality: full HD, 1080p, 2k, 4k.
+                </li>
+                <li>
+                    Supports all devices: SnapSave supports all platforms and devices, easily download Youtube videos on
+                    PC,
+                    tablet, iPhone or Android.
+                </li>
+                <li>
+                    All Formats Support: we support all video and audio formats. You can convert Youtube videos to MP3,
+                    3GP,
+                    MP4, WMA, M4A, FLV, WEBM and MO formats, etc.
+                </li>
+                <li>
+
+                    Unlimited Downloads: SnapSave is a free Youtube downloader, you can download and convert videos from
+                    Youtube
+                    without limit.
+                </li>
+            </ul>
+            <hr>
+        </div>
+    </div>
+    <center>
+        <h3>Steps to Download</h3>
+    </center>
+    <div class="container  mt-5 mb-5">
+        <div class="row p-3">
+
+
+            <div class="card col-sm-3 mb-2">
+
+                <div class="card-body">
+                    <p class="card-text">Go to Youtube and copy the link of video</p>
+                </div>
+            </div>
+
+            <div class="card col-sm-3 mb-2">
+
+                <div class="card-body">
+                    <p class="card-text">Open YT downloader on your browser and paste this link</p>
+                </div>
+            </div>
+            <div class="card col-sm-3 mb-2">
+
+                <div class="card-body">
+                    <p class="card-text">
+                        Select the quality and Click on Download Button
+                    </p>
+                </div>
+            </div>
+            <div class="card col-sm-3 mb-2">
+
+                <div class="card-body">
+                    <p class="card-text">
+                        Check your downloads folder
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- 1. Go to Youtube and copy the link of video
+   2. Open YT downloader on your browser and paste this link
+   3. Select the quality and  Click on Download Button
+   4. Check your downloads folder
+-->
+    <!-- Footer -->
+    <section>
+        <footer class="footer-distributed">
+
+            <div class="footer-left">
+
+                <h3><span>YTDownloader</span></h3>
+
+
+
+                <p class="footer-company-name">Developed by Aditya Desity © 2023</p>
+            </div>
+            <div class="footer-center">
+
+                <p class="footer-company-about">
+                    <span>About Me</span>
+                    I am a Python Deleloper. I build Web apps, Machine learning models and provide end to end customer
+                    service. For help contact me!
+                </p>
+
+                <div class="footer-icons">
+
+                    <a href="https://www.linkedin.com/in/aditya-desity-141685209/"><img src="{{url_for('static', filename='images/linkedin.png')}}" height="30px" alt=""><i
+                            class="fa fa-facebook"></i></a>
+                    <a href="#"><img src="{{url_for('static', filename='images/insta.png')}}" height="30px" alt=""><i
+                            class="fa fa-twitter"></i></a>
+                    <a href="#"><img src="{{url_for('static', filename='images/icon.png')}}" height="30px" alt=""><i
+                            class="fa fa-linkedin"></i></a>
+                    <a href="#"><img src="{{url_for('static', filename='images/twitter.png')}}" height="30px" alt=""><i
+                            class="fa fa-github"></i></a>
+
+                </div>
+
+            </div>
+            <div class="footer-right">
+
+                <div>
+                    <i class="fa fa-phone"></i>
+                    <p>+919764431123</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="mailto:adityadesity11@gmail.com">adityadesity11@gmail.com</a></p>
+                </div>
+
+            </div>
+
+
+
+        </footer>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

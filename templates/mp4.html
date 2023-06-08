@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Download MP4 {% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5 ">
+    <div class="container-fluid mb-4" style="text-align:center;">
+        <h2>Best Youtube Downloader</h2>
+        <h5>Download MP4 Audios and Videos from YouTube quickly and easily</h5>
+    </div>
+
+    <form action="{{url_for('mp4')}}" method="post">
+        <div class="input-group m-1 row">
+            <!-- <span class="input-group-text col-sm-1" id="basic-addon3">Url: </span> -->
+            <input type="text" class="form-control col-sm-9" id="basic-url" aria-describedby="basic-addon3" name="url"
+                placeholder="Paste the url here" required>
+            <button type="submit" class="btn btn-warning col-sm-3">Download MP4</button>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value='audio'>
+          <label class="form-check-label" for="flexRadioDefault2">
+            Audio
+          </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label" for="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1" value='video'>
+              Video
+            </label>
+          </div>
+        
+    </form>
+</div>
+
+
+{% endblock content %}
+
+
+
+

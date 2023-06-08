@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Audio Download {% endblock %}
+{% block content %}
+<div class="container mt-5 mb-5 ">
+    <div class="container-fluid mb-4" style="text-align:center;">
+        <h2>Best Youtube Downloader</h2>
+        <h5>Download Audio from YouTube quickly and easily</h5>
+    </div>
+
+    <form action="{{url_for('audio')}}" method="post">
+        <div class="input-group m-1 row">
+            <!-- <span class="input-group-text col-sm-1" id="basic-addon3">Url: </span> -->
+            <input type="text" class="form-control col-sm-9" id="basic-url" aria-describedby="basic-addon3" name="url"
+                placeholder="Paste the url here" required>
+            <button type="submit" class="btn btn-outline-primary col-sm-3">Download Audio</button>
+        </div>
+        
+
+        <div class='input-group m-1' id="input-group-home" style="width: 20%;">
+            <select class="form-select" aria-label="Default select example" name='type'>
+                <option value="mp4" selected>MP4</option>
+                <option value="mp3">MP3</option>
+                <option value="webm">WEBM</option>
+            </select>
+        </div>
+
+    </form>
+</div>
+{%endblock content%}

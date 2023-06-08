@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Home {% endblock %}
+
+
+{% block content %}
+
+
+<div class="container mt-5 mb-5 ">
+    <div class="container-fluid mb-4" style="text-align:center;">
+        <h2>Best Youtube Downloader</h2>
+        <h4>Download Videos in 360p, 720p,1080p, 4k</h4>
+        <h5>Download videos from YouTube quickly and easily</h5>
+    </div>
+
+    <form action="{{url_for('home')}}" method="post">
+        <div class="input-group m-1 row">
+            <!-- <span class="input-group-text col-sm-1" id="basic-addon3">Url: </span> -->
+            <input type="text" class="form-control col-sm-9" id="basic-url" aria-describedby="basic-addon3" name="url"
+                placeholder="Paste the url here" required>
+            <button type="submit" class="btn btn-success col-sm-3">Download Video</button>
+        </div>
+        <div class='input-group m-1' id="input-group-home" style="width: 20%;">
+
+
+            <select class="form-select" aria-label="Default select example" name='resolution'>
+                <option value="360p">360p</option>
+                <option value="720p" selected>720p (recomended)</option>
+                <option value="1080p">1080p</option>
+                <option value="4K">4K</option>
+            </select>
+        </div>
+
+        <div class='input-group m-1' id="input-group-home" style="width: 20%;">
+            <select class="form-select" aria-label="Default select example" name='type'>
+                <option value="mp4" selected>MP4</option>
+                <option value="mp3">MP3</option>
+                <option value="flv">FLV</option>
+                <option value="wma">WMA</option>
+                <option value="mo">MO</option>
+            </select>
+        </div>
+
+    </form>
+</div>
+{%endblock content%}
+
+
+
+{%block footer%}
+
+{% endblock%}
